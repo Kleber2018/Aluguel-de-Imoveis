@@ -1,0 +1,69 @@
+DROP DATABASE ALUGUEL_IMOVEIS;
+CREATE DATABASE ALUGUEL_IMOVEIS;
+USE ALUGUEL_IMOVEIS;
+
+CREATE TABLE Imovel (
+Imovel_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+Tipo VARCHAR(12),
+Cidade VARCHAR(25),
+Estado char(2),
+Bairro VARCHAR(25),
+CEP VARCHAR(9),
+Rua VARCHAR(50),
+Numero INTEGER,
+Imovel_situacao VARCHAR(10),
+Qtd_quarto INTEGER,
+Tamanho DECIMAL(10),
+Observacao VARCHAR(160),
+Valor_locacao DECIMAL(10)
+);
+
+CREATE TABLE Cliente (
+Cliente_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+cliente_nome VARCHAR(40),
+Data_nascimento DATE,
+CPF varchar(11),
+sexo CHAR(1),
+banco varchar(15),
+conta integer,
+agencia integer,
+operacao integer
+);
+
+
+CREATE TABLE Locacao (
+locacao_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+Data_fim_contrato DATE,
+Observacao VARCHAR(200),
+Data_ini_contrato DATE,
+Locacao_situacao VARCHAR(10),
+Valor_reajustado DECIMAL(10),
+Cliente_id INTEGER,
+Imovel_id INTEGER,
+FOREIGN KEY(Cliente_id) REFERENCES Cliente (Cliente_id),
+FOREIGN KEY(Imovel_id) REFERENCES Imovel (Imovel_id)
+);
+
+
+INSERT INTO IMOVEL (Tipo, Cidade, Bairro, CEP, Rua, Numero, Imovel_situacao, Qtd_quarto,
+Tamanho, Observacao, Valor_locacao)
+VALUES ("Casa", "Ponta Grossa","Jd. Carvalho", "84026-300", "Rua Travesa 2", "34", "Disponível", "2", "120", "boas recomentações", "1200");
+
+INSERT INTO IMOVEL (Tipo, Cidade, Bairro, CEP, Rua, Numero, Imovel_situacao, Qtd_quarto,
+Tamanho, Observacao, Valor_locacao)
+VALUES ("Casa", "Ponta Grossa","Jd. America", "84126-200", "Rua do Contorno ", "134", "Disponível", "3", "100", "boas recomentações", "950");
+
+INSERT INTO IMOVEL (Tipo, Cidade, Bairro, CEP, Rua, Numero, Imovel_situacao, Qtd_quarto,
+Tamanho, Observacao, Valor_locacao)
+VALUES ("Casa", "Ponta Grossa","Jd. America", "84180-200", "Rua do Contorno ", "134", "Locado", "3", "160", "boas recomentações", "1150");
+
+INSERT INTO IMOVEL (Tipo, Cidade, Bairro, CEP, Rua, Numero, Imovel_situacao, Qtd_quarto,
+Tamanho, Observacao, Valor_locacao)
+VALUES ("Casa", "Ponta Grossa","Jd. Progresso", "84156-200", "Rua do Contorno ", "134", "Locado", "1", "110", "boas recomentações", "550");
+
+INSERT INTO CLIENTE (CLIENTE_NOME, DATA_NASCIMENTO, CPF, SEXO)
+VALUE ("Kleber dos Santos", "1991/11/30", "07022996938", "M");
+
+INSERT INTO CLIENTE (CLIENTE_NOME, DATA_NASCIMENTO, CPF, SEXO)
+VALUE ("Eduardo", "1991/11/30", "07023496938", "M");
+
